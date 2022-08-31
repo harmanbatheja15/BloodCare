@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %} Volunteers / Technical Team{% endblock %}
+{% load static %}
+
+{% block content %}
+
+<section class="about section" id="volunteers_technicalTeam">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title padd-15">
+                <h2>Volunteers / Technical Team</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <!-- Team Section -->
+
+                <div class="team_container">
+
+                    <div class="team">
+                    
+                        <div class="team-img">
+                            <img src="{% static 'images/Harman.jpg' %}">
+                            <div class="team-social">
+                                <a class="social-tw" href="https://twitter.com/harmanbatheja15/" target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a class="social-fb" href="https://www.facebook.com/harmanbatheja15/" target="_blank">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                                <a class="social-li" href="https://www.linkedin.com/in/harmanbatheja15/" target="_blank">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a class="social-in" href="https://www.instagram.com/harmanbatheja15/" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a class="social-gh" href="https://www.github.com/harmanbatheja15/" target="_blank">
+                                    <i class="fa fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="team-content">
+                            <h2>Harman Batheja</h2>
+                            <h3>Student & Web Developer</h3>
+                            <p>Brain behind this project and Developer of this Website.</p>
+                        </div>
+                    
+                    </div>
+
+                </div>
+                
+                <!-- Team Section End -->
+
+            </div>
+        </div>
+
+</section>
+
+{% endblock %}

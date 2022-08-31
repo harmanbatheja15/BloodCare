@@ -1,0 +1,63 @@
+{% load static %}
+
+<nav class="profile-navigation">
+
+    {% if request.user.is_authenticated %}
+
+    <div class="profile-nav-container">
+        <div class="profile_nav">
+
+            <ul>
+                <li>
+                    <a href="#" class="profile">
+                        <img src="{% static 'images/user.png' %}" alt="User" />
+                        <b><i class="fa fa-angle-down"></i> </b>
+                    </a>
+                    <ul class="nav-dropdown">
+                        <div class="nav_links_container">
+                            <li>
+                                <a href="{% url 'dashboard' %}">Profile</a>
+                            </li>
+                            <!-- <hr> -->
+                            <li>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    {% endif %}
+
+</nav>
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    (function ($) {
+        $(function () {
+            $('nav ul li a:not(:only-child)').click(function (e) {
+                $(this).siblings('.nav-dropdown').toggle();
+                $('.nav-dropdown').not($(this).siblings()).hide();
+                e.stopPropagation();
+            });
+
+            $('html').click(function () {
+                $('.nav-dropdown').hide();
+            });
+
+            $('#nav-toggle').click(function () {
+                $('nav ul').slideToggle();
+            });
+
+            $('#nav-toggle').on('click', function () {
+                this.classList.toggle('active');
+            });
+        });
+    })(jQuery);
+
+</script>

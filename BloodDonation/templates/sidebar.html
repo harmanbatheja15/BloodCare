@@ -1,0 +1,67 @@
+{% load static %}
+<!-- Sidebar -->
+<div class="aside">
+    <!-- Logo -->
+    <a href="/">
+        <img class="logo" src="{% static 'images/photoshopLogo.png' %}" alt="Blood Care" title="Blood Care" />
+    </a>
+    <!-- Nav Toggler Btn -->
+    <div class="nav-toggler">
+        <span></span>
+    </div>
+    <!-- Nav -->
+    <ul>
+
+        <li>
+            <a href="/" {% if '/' == request.path %} class="active" {% else %} class="" {% endif %}>Home</a>
+        </li>
+
+        <li>
+            <a href="{% url 'find_donor' %}" {% if '/find_donor' == request.path %} class="active" {% else %} class="" {% endif %}>Find Blood Donors</a>
+        </li>
+
+        <li>
+            <a href="{% url 'find_blood_banks' %}" {% if '/find_blood_banks' == request.path %} class="active" {% else %} class="" {% endif %}>Find Blood Banks</a>
+        </li>
+
+        <li>
+            <a href="{% url 'can_donate' %}" {% if '/can_donate' == request.path %} class="active" {% else %} class="" {% endif %}>Eligible / Not Eligible</a>
+        </li>
+
+        <li>
+            <a href="{% url 'feedback' %}" {% if '/feedback' == request.path %} class="active" {% else %} class="" {% endif %}>Feedback</a>
+        </li>
+        
+        <li>
+            <a href="{% url 'volunteers&technicalTeam' %}" {% if '/volunteers&technicalTeam' == request.path %} class="active" {% else %} class="" {% endif %}>Volunteers / Technical Team</a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+
+        {% else %}
+
+        <li>
+            <a href="{% url 'register' %}"{% if '/register' == request.path %} class="active" {% else %} class="" {% endif %} id="register">Register</a>
+        </li>
+        
+        <li>
+            <a href="{% url 'login' %}"{% if '/login' == request.path %} class="active" {% else %} class="" {% endif %} id="login">Login</a>
+        </li>
+
+        {% endif %}
+
+    </ul>
+
+    <label for="google_translate_element" style="display:none">Select Language</label>
+    <div id="google_translate_element" title="Select Language"></div>
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+
+    <!-- Copyright -->
+    <p class="copyright-text">Copyright &copy; 2021 Blood Care, All Rights Reserved.</p>
+</div>
+<!-- Sidebar End -->

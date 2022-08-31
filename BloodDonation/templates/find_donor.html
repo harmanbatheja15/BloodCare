@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title %} Find Blood Donor {% endblock %}
+{% load static %}
+{% block content %}
+
+<section class="about section" id="find">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title padd-15">
+                <h2>Find Blood Donor</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about-content padd-15">
+                <div class="find-donor-form-modal">
+                    <div id="find-donor-form">
+                        <form method="get" action="{% url 'find_donor' %}" id="find_blood_donor_form" data-cities-url="{% url 'load_cities' %}">
+                            <br />
+                            <select name="blood_group" required id="blood_group">
+                                <option value="" disabled selected>Select Blood Group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+
+                            <br><br>
+
+                            <select name="state" id="state" required>
+                                <option value="" disabled selected>Select State</option>
+                                {% for i in s %}
+                                <option value="{{i.id}}">{{i}}</option>
+                                {% endfor %}
+                            </select>
+
+                            <br><br>
+
+                            <select id="city" name="city" required>
+                                <option disabled selected value="">Select City</option>
+                            </select>
+                            
+                            <br><br>
+
+                            <button class="btn" type="submit">Find Blood Donor</button>
+                        </form>
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row">
+                    <div class="section-title padd-15">
+                        <h2>Registered Donors</h2>
+                    </div>
+                </div>
+                
+                {% if blood_donors %}
+                <table border="1" cellspacing="0" cellpadding="0" width="100%">
+                
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Blood Group</th>
+                            <th>Donate Plasma</th>
+                            <th>State</th>
+                            <th>City</th>
+                        </tr>
+                    </thead>
+                
+                    <tbody>
+                        {% for blood_donor in blood_donors %}
+                        <tr>
+                            <td>{{blood_donor.name}}</td>
+                            <td>{{blood_donor.phone}}</td>
+                            <td>{{blood_donor.email}}</td>
+                            <td>{{blood_donor.blood_group}}</td>
+                            <td>{{blood_donor.donate_plasma}}</td>
+                            <td>{{blood_donor.state}}</td>
+                            <td>{{blood_donor.city}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                
+                </table>
+                {% else %}
+                <h3>Sorry! No results found for your search. Make new search.</h3>
+                {% endif %}
+
+                <br><br><hr>
+
+                <p id="warning">Warning: Do not pay any amount to any person promising supply of blood packets or arranging donors. Inform us on <a href="">bloodcarefoundation.org@gmail.com</a> <!-- or contact us on <a href="">+91 9646507202</a> --> so that we can initiate police/legal action. We have no agents, and does not collect money for any service.</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+
+    $("#state").change(function () {
+        var url = $("#find_blood_donor_form").attr("data-cities-url");
+        var stateId = $(this).val();
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function(data) {
+                $("#city").html(data);
+            }
+        })
+    });
+
+    $("#blood_group").select2();
+    $("#state").select2();
+    $("#city").select2();
+
+</script>
+
+{% endblock %}

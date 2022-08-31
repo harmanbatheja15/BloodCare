@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %} Eligible / Not Eligible {% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- Eligible / Not Eligible -->
+<section class="about section" id="can">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title padd-15">
+                <h2>Eligible</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about-content padd-15">
+                <b>You can donate blood if...</b><br />
+                <br />
+                <ul>
+                    <li>You are more than 18 years old.</li><br />
+                    <li>Your last blood donation was 3 months earlier.</li><br />
+                    <li>You are healthy and have not suffered from typhoid, malaria or other diseases
+                        in the recent past.</li><br />
+                    <li>Your weight is more than 45 kgs.</li><br />
+                </ul>
+                </b><br /><br />
+                <div class="row">
+                    <div class="section-title padd-15">
+                        <h2>Not Eligible</h2>
+                    </div>
+                </div>
+                <b>You can not donate blood if you have any of these conditions</b><br /><br />
+                <ul>
+                    <li>Been tested positive for HIV.</li><br />
+                    <li>Cardiac problems, hypertension, epilepsy, diabetes, history of cancer,
+                        chronic kidney or liver disease, bleeding tendencies, venereal disease, etc.
+                    </li><br />
+                    <li>Cold / Fever in the past 1 week.</li><br />
+                    <li>Under treatment with antibiotics or any other medication.</li><br />
+                    <li>Major surgery in the last 6 months.</li><br />
+                    <li>Vaccination in the last 24 hours.</li><br />
+                    <li>Had a miscarriage in the last 6 months or have been pregnant / lactating in the last one
+                        year.</li><br />
+                    <li>Had fainting attacks during last donation.</li><br />
+                    <li>Have regularly received treatment with blood products.</li><br />
+                    <li>Shared a needle to inject drugs / have history of drug addiction.</li><br />
+                    <li>Had sexual relations with different partners or with a high risk individual.</li><br />
+                    <li>A donor with an acute infection should not donate. The reason for antibiotic use must be evaluated to determine if the donor has a bacterial infection that could be transmissible by blood.</li>
+                    <br />
+                    <li>If you have a history of bleeding problems, you will be asked additional questions. If your blood does not clot normally, you should not donate since you may have excessive bleeding where the needle was placed. For the same reason, you should not donate if you are taking any "blood thinner"</li><br />
+                    <li>You must not donate blood If you do not meet the minimum haemoglobin level for blood donation</li><br />
+                </ul>
+                <b>Pregnancy and Menstrual Cycle</b><br /><br />
+                <ul>
+                    <li>Females should not donate blood during Pregnancy.</li><br />
+                    <li>They can donate after 6 months following a normal delivery and when they are not breast
+                        feeding.</li><br />
+                    <li>Females should not donate blood if they are having heavy menstrual flow or menstrual cramps.
+                    </li><br />
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Eligible/Not Eligible ends -->
+
+{% endblock %}

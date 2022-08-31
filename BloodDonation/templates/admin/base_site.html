@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block branding %}
+
+    <style>
+        #content-related {
+            display: none;
+        }
+        div#header {
+            background: crimson;
+        }
+        .module h2, .module caption, .inline-group h2 {
+            background: crimson;
+        }
+        #user-tools a:hover {
+            color: #fff;
+        }
+    </style>
+    
+    <h1 id="head">
+        <a href="/admin/">
+            <img src="{% static 'images/Chrome Logo.png' %}" width="15%" alt="Logo" />
+            <span style="margin-left: .6rem; color: #fff;">Admin Area</span>
+        </a>
+    </h1>
+
+{% endblock %}

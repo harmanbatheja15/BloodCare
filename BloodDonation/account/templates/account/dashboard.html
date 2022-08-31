@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %} Dashboard {% endblock %}
+<!-- {% load static %} -->
+{% load i18n %}
+
+{% block content %}
+
+<section class="section about" id="dashboard">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <div class="row">
+                    <div class="section-title padd-15">
+                        <h2>User Profile</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="about-content padd-15">
+
+                        <div id="dashboard-form">
+                            <div>
+                                <form method="post" enctype="multipart/form-data" id="dashboardForm" data-cities-url="{% url 'load_cities' %}">
+                                    {% csrf_token %}
+
+                                    <h1 style="text-align: center;">Edit your Details</h1>
+                                    <br>
+
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div id="alert-message">
+                                        <div class="alert alert-{{message.tags}} alert-dismissible text-center"
+                                            role="alert">
+                                            {{ message }}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+
+                                    <!-- Form -->
+                                    {{ u_form }}
+                                    <!-- Form End -->
+
+                                    {% for error in field.errors %}
+                                    <p style="color: red;">{{error}}</p>
+                                    {% endfor %}
+                                    
+                                    {% if login_form.non_field_errors %}
+                                    <div style="color: red;">
+                                        <p style="color: red;">{{login_form.non_field_errors}}</p>
+                                    </div>
+                                    {% endif %}
+
+                                    <p>
+                                        <a href="{% url 'password_change' %}">Change Password</a>
+                                    </p>
+
+                                    <button type="submit" class="btn">Update Account</button>
+                                    <a href="{% url 'delete' request.user.pk %}">
+                                        <button class="btn" type="button">{% trans "Delete Account" %}</button>
+                                    </a>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    $("#id_state").change(function () {
+        var url = $("#dashboardForm").attr("data-cities-url");
+        var stateId = $(this).val();
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#id_city").html(data);
+            }
+        })
+    });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+<option disabled selected value="">Select City</option>
+{% for c in city %}
+<option value="{{ c.pk }}">{{ c.name }}</option>
+{% endfor %}

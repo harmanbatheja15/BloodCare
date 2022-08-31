@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %} Find Blood Banks {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<!-- Blood Banks -->
+<section class="about section" id="blood_banks">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title padd-15">
+                <h2>Blood Banks</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <div class="find-blood-banks-form-modal">
+                    <div id="find-blood-banks-form">
+
+                        <form method="GET" action="{% url 'find_blood_banks' %}" id="blood_bank_search_form"
+                            data-cities-url="{% url 'load_cities' %}">
+                            <br />
+                            <select name="state" id="stateSearch" required>
+                                <option value="" disabled selected>Select State</option>
+                                {% for i in s %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                            </select>
+                            <br>
+                            <button class="btn" type="submit">Search</button>
+                        </form>
+
+                    </div>
+                </div>
+
+                <br><br>
+
+                {% if state_search %}
+                <table border="1" cellspacing="0" class="table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Blood Bank Name</th>
+                            <th style="width: 20%;">State</th>
+                            <th style="width: 20%;">City</th>
+                            <th style="width: 20%;">Address</th>
+                            <th style="width: 20%;">Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for blood_bank in blood_banks %}
+                        <tr>
+                            <td>{{ blood_bank.Blood_Bank_Name }}</td>
+                            <td>{{ blood_bank.States }}</td>
+                            <td>{{ blood_bank.City }}</td>
+                            <td>{{ blood_bank.Address }}</td>
+                            <td>{{ blood_bank.Contact_No }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h3>Sorry! No results found for your search. Make new search.</h3>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blood Banks End -->
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+
+    $("#stateSearch").change(function () {
+        var url = $("#blood_bank_search_form").attr("data-cities-url");
+        var stateId = $(this).val();
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#citySearch").html(data);
+            }
+        })
+    });
+
+    $("#stateSearch").select2();
+
+</script>
+
+{% endblock %}

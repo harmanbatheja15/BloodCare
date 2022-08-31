@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} Delete Account {% endblock %}
+{% load i18n %}
+
+{% block content %}
+
+<style>
+
+.btn {
+  margin-top: 0.5em;
+  cursor: pointer;
+  position: relative;
+  font-size: 1em;
+  z-index: 2;
+  outline: none;
+  transition: .2s;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2em;
+  padding: .5rem 1rem;
+  transition: 0.5s;
+  background: red;
+  color: #fff;
+}
+
+</style>
+
+<section class="section about" id="delete">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <div class="row">
+                    <div class="section-title padd-15">
+                        <h2>Delete Account</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="about-content padd-15">
+
+                        <form method="POST" >
+                            {% csrf_token %}
+                            <h3>{% trans "Are you sure you want to delete the account" %} {{ object.email }}</h3>
+                            <button type="submit" class="btn">{% trans "Delete" %}</button>
+                        </form>
+                        <br><br><hr><br><br>
+                        <h3 style="margin-bottom: 1rem;">{% trans "No, Keep my account" %}</h3>
+                        <a href="/" class="btn">{% trans "Back To Home Page" %}</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %} Login {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<!-- Login -->
+<section class="about section" id="login">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title padd-15">
+                <h2>Login Here</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <div id="login-form">
+                    <div>
+                        <form method="post">
+                            <br />
+                            {% csrf_token %}
+                            
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div id="alert-message">
+                                <div class="alert alert-{{message.tags}} alert-dismissible text-center" role="alert">
+                                    {{ message }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            {% for field in login_form %}
+
+                            <p style="margin-bottom: .3rem;">{{field.label_tag}}</p>
+                            {{field}}
+
+                            {% for error in field.errors %}
+                            <p style="color: red;">{{error}}</p>
+                            {% endfor %}
+
+                            {% if login_form.non_field_errors %}
+                            <div style="color: red;">
+                                <p>{{login_form.non_field_errors}}</p>
+                            </div>
+                            {% endif %}
+
+                            <br><br>
+
+                            {% endfor %}
+
+                            <p>
+                                <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                            </p>
+                            
+                            <p style="margin-bottom: .5rem;">
+                                <a href="{% url 'register' %}">Do not have an account? Register</a>
+                            </p>
+
+                            <button type="submit" class="btn">Login</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Register Ends -->
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="" />
+    <meta name="description"
+        content="Ours is an organization that helps in bringing voluntary blood donors and those in need of blood on to a common platform. Through this website, we register donors who are willing to donate blood, as well as provide support to those in need of it." />
+    <meta http-equiv="Keywords" name="Keywords"
+        content="bloodcare, blood care, blood-care, letsdonateblood, lets donate blood, let's donate blood, blood, blood donor, blood bank, blood banks, blood donors, blood donor database, seek blood donors, get blood donors, blood donors on request, voluntary blood donors, search blood donors, blood donors list, blood donors on demand, donate blood, register blood donors, register blood donor, get blood donor, seek blood donor, voluntary blood donor in India, search blood donor, voluntary blood donors in India, blood donation, india blood donors, india blood donors, indian blood donors, indian blood donors, online blood bank, blood donors in india, blood donors in india, blood donors in andhra pradesh, blood donors in hyderabad, Online Blood Bank, Indias Largest Blood Donors Database, Andhrapradesh blood donors list, Hyderabad blood donors list, Chennai blood donors list, Mumbai blood donors list, Bangalore blood donors list, Delhi blood donors list, Noida blood donors list, Patiala blood donors, punjab blood donors, blood donation website, Blood donation website, blood donors in nabha, blood banks in world, blood bank near me, blood donation near me, blood drive, donors, plasma bank" />
+
+    <!-- Title -->
+    <title>Blood Care | {% block title %} {% endblock %}</title>
+
+    <!-- Icon -->
+    <link rel="icon" href="{% static 'images/Chrome Logo.png' %}" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="{% static 'images/Chrome Logo.png' %}" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Custom Right Click -->
+    <div id="context-menu">
+        <div class="item" onclick="goBack()">Back</div>
+        <div class="item reload">Reload</div>
+        <div class="item openInNewTab">Open link in new tab</div>
+        <div class="item">Option 4</div>
+        <div class="item">Option 5</div>
+    </div>
+    <!-- Custom Right Click End -->
+
+    <!-- Sidebar -->
+    {% include 'sidebar.html' %}
+    <!-- Sidebar End -->
+
+    <!-- Main Content -->
+    {% block content %} {% endblock %}
+    <!-- Main Content End -->
+
+    <!-- Scripts -->
+
+    <!-- Google Translate -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+    <!-- Tidio Live Chat -->
+    <script src="https://code.tidio.co/3kadlwun87v1o1gnzd5ulu5obexj4uqb.js"></script>
+
+    <!-- Instamojo Payment Gateway -->
+
+    <script src="https://js.instamojo.com/v1/checkout.js" async></script>
+
+    <script>
+        function paymentGateway() {
+            Instamojo.open("https://test.instamojo.com/@bathejasanjeev");
+        }
+    </script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Custom js -->
+    <script src="{% static 'js/app.js' %}" async></script>
+
+    <!-- Scripts End -->
+
+</body>
+
+</html>

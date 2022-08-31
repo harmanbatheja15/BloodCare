@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %} Feedback {% endblock %}
+{% load static %}
+
+{% block content %}
+
+<!-- Report/Feedback Starts -->
+<section class="section about" id="contact_us">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <div class="row">
+                    <div class="section-title padd-15">
+                        <h2>Feedback</h2>
+                    </div>
+                </div>
+
+                <div class="feedback-form">
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div id="alert-message">
+                                <div class="alert alert-{{message.tags}} alert-dismissible text-center" role="alert">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post" action="/feedback">
+                        {% csrf_token %}
+                        <div>
+                            <input type="text" name="name" {% if request.user.is_authenticated %} value="{{user.name}}" {% else %} value="" {% endif %} id="contact_name" autofill="off" required>
+                            <label for="contact_name">Name</label>
+                        </div>
+
+                        <div>
+                            <input type="email" name="email" {% if request.user.is_authenticated %} value="{{user.email}}" {% else %} value="" {% endif %} id="contact_email" autofill="off" required>
+                            <label for="contact_email">Email</label>
+                        </div>
+
+                        <div>
+                            <input type="number" name="phone" {% if request.user.is_authenticated %} value="{{user.phone}}" {% else %} value="" {% endif %} id="contact_mobile" autofill="off" required>
+                            <label for="contact_mobile">Mobile Number</label>
+                        </div>
+
+                        <div>
+                            <textarea name="message" id="contact_message" autofill="off" required
+                                title="Please fill out this field."></textarea>
+                            <label for="contact_message">Drop Your Message Here</label>
+                        </div>
+
+                        <button type="submit" value="submit">Submit</button>
+                        
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Report/Feedback Ends -->
+
+{% endblock %}

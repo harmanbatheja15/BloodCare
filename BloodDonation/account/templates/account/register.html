@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+{% load static %}
+{% block content %}
+
+<!-- Register -->
+<section class="about section" id="register">
+
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title padd-15">
+                <h2>Register Here</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="about-content padd-15">
+
+                <div id="registration-form">
+                    <div>
+                        <form method="post" id="registerForm" data-cities-url="{% url 'load_cities' %}">
+                            {% csrf_token %}
+
+                            <br>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div id="alert-message">
+                                <div class="alert alert-{{message.tags}} alert-dismissible text-center" role="alert">
+                                    {{ message }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                            <br />
+                        
+                            {% for field in registration_form %}
+
+                            <p style="margin-bottom: .3rem;">{{field.label_tag}}</p>
+                            {{field}}
+                            <br><br>
+                            
+                            {% for error in field.errors %}
+                            <p style="color: red;">{{error}}</p><br>
+                            {% endfor %}
+                        
+                            {% endfor %}
+
+                            <a href="{% url 'login' %}">Already Registered? Log In</a>
+                            <br><br>
+                            <p>
+                                <b>Be sure that you are more than 18 years old</b>
+                            </p>
+                            <br>
+                            <p>
+                                <b>By clicking on Register, you agree 'Blood-Care' to show your details to other users</b>
+                            </p>
+                            <br>
+
+                            <button type="submit" class="btn">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Register Ends -->
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    $("#id_state").change(function () {
+        var url = $("#registerForm").attr("data-cities-url");
+        var stateId = $(this).val();
+        $.ajax({
+            url: url,
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#id_city").html(data);
+            }
+        })
+    });
+
+</script>
+
+{% endblock %}
